@@ -13,7 +13,7 @@ const COLUMNS = [
     },
     {
         Header: "Date of Birth",
-        accessor: "id",
+        accessor: "date_of_birth",
     },
     {
         Header: "Country",
@@ -26,5 +26,3 @@ const COLUMNS = [
 ];
 
 export default COLUMNS;
-
-
