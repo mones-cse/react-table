@@ -7,12 +7,15 @@ const Table = ({ data, columns }) => {
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
         useTable({ columns, data });
     return (
-        <table {...getTableProps()}>
+        <table
+            {...getTableProps()}
+            className={"table table-dark table-striped"}
+        >
             <thead>
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
-                            <th {...column.getHeaderProps()}>
+                            <th {...column.getHeaderProps()} scope="col">
                                 {column.render("Header")}
                             </th>
                         ))}
@@ -26,7 +29,7 @@ const Table = ({ data, columns }) => {
                         <tr {...row.getRowProps()}>
                             {row.cells.map(cell => {
                                 return (
-                                    <td {...cell.getCellProps()}>
+                                    <td {...cell.getCellProps()} scope="row">
                                         {cell.render("Cell")}
                                     </td>
                                 );
@@ -42,7 +45,11 @@ const Table = ({ data, columns }) => {
 const BasicTable = () => {
     const columns = useMemo(() => COLUMNS, []);
     const data = useMemo(() => MOCK_DATA, []);
-    return <Table data={data} columns={columns} />;
+    return (
+        <div className={"container"}>
+            <Table data={data} columns={columns} />
+        </div>
+    );
 };
 
 export default BasicTable;
